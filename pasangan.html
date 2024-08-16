@@ -183,7 +183,7 @@
 
         // Event listener untuk tombol Pesan
         document.getElementById('send-button').addEventListener('click', function() {
-            const phoneNumber = '085813572393'; // Ganti dengan nomor WhatsApp yang diinginkan
+            const phoneNumber = '+6285813572393'; // Ganti dengan nomor WhatsApp yang diinginkan
             const message = selectedImages.map(src => src.split('/').pop()).join(', '); // Mengambil nama file
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=Pesanan%20Anda:%20${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank'); // Membuka WhatsApp dengan pesan
