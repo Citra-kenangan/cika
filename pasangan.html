@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto Pasangan - CITRA KENANGAN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0; /* Ganti dengan warna latar belakang yang diinginkan */
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .pasangan-image {
+            width: 100%; /* Atur lebar gambar sesuai kebutuhan */
+            max-width: 300px; /* Maksimal lebar gambar */
+            margin: 10px;
+            cursor: pointer; /* Menunjukkan bahwa gambar dapat diklik */
+        }
+        #foto-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-wrapper {
+            border: 2px solid #ccc; /* Border untuk gambar */
+            border-radius: 8px; /* Sudut border yang melengkung */
+            padding: 10px; /* Ruang di dalam border */
+            text-align: center; /* Pusatkan teks */
+            margin: 10px; /* Jarak antar gambar */
+            background-color: #fff; /* Warna latar belakang dalam border */
+        }
+        .selected {
+            border-color: blue; /* Warna border saat gambar dipilih */
+        }
+        #order-box {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center; /* Rata tengah untuk isi kotak pesanan */
+        }
+        #order-box img {
+            width: 50px; /* Ukuran gambar kecil di kotak pesanan */
+            margin: 5px;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Rata tengah untuk item pesanan */
+            margin: 5px 0;
+        }
+        .order-item button {
+            margin-left: 10px;
+        }
+        #send-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 style="font-family: 'Playfair Display', serif;">Foto Pasangan</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="pasangan">
+        <div class="container">
+            <h2 style="font-family: 'Playfair Display', serif;">Galeri Foto Pasangan</h2>
+            <p style="font-family: 'Roboto', sans-serif;">Berikut adalah foto-foto pasangan yang telah diubah menjadi karya seni.</p>
+            <div id="foto-container">
+                <!-- Gambar pasangan akan ditampilkan di sini -->
+            </div>
+            <div id="order-box">
+                <h3>Pesanan Anda:</h3>
+                <div id="selected-images"></div>
+            </div>
+            <button id="send-button">Pesan</button> <!-- Tombol Pesan -->
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p style="font-family: 'Roboto', sans-serif;">&copy; 2023 Citra Kenangan.</p>
+        </div>
+    </footer>
+    <script>
+        // Jumlah gambar pasangan
+        const jumlahGambar = 118; // Sesuaikan dengan jumlah gambar yang ada
+        const fotoContainer = document.getElementById('foto-container');
+        const selectedImagesContainer = document.getElementById('selected-images');
+
+        // Array untuk menyimpan gambar yang dipilih
+        const selectedImages = [];
+
+        // Loop untuk menambahkan gambar pasangan
+        for (let i = 1; i <= jumlahGambar; i++) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-wrapper'; // Tambahkan kelas untuk styling
+
+            const img = document.createElement('img');
+            img.src = `pasangan${String(i).padStart(3, '0')}.jpg`; // Menghasilkan nama file seperti pasangan001.jpg
+            img.alt = `Pasangan ${i}`;
+            img.className = 'pasangan-image';
+
+            // Event listener untuk mengubah border dan menampilkan gambar di kotak pesanan
+            img.addEventListener('click', function() {
+                // Toggle kelas 'selected' pada gambar yang diklik
+                wrapper.classList.toggle('selected');
+
+                const imageIndex = selectedImages.indexOf(img.src);
+                if (imageIndex > -1) {
+                    // Jika gambar sudah ada di pesanan, hapus
+                    selectedImages.splice(imageIndex, 1);
+                } else {
+                    // Jika gambar belum ada, tambahkan ke pesanan
+                    selectedImages.push(img.src);
+                }
+
+                // Update kotak pesanan
+                updateOrderBox();
+            });
+
+            const caption = document.createElement('p');
+            caption.textContent = `Pasangan ${String(i).padStart(3, '0')}`; // Menampilkan nama gambar
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(caption);
+            fotoContainer.appendChild(wrapper);
+        }
+
+        function updateOrderBox() {
+            selectedImagesContainer.innerHTML = ''; // Kosongkan kotak pesanan
+            selectedImages.forEach(src => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+
+                const selectedImg = document.createElement('img');
+                selectedImg.src = src; // Mengambil sumber gambar yang dipilih
+
+                const imgName = document.createElement('span');
+                imgName.textContent = src.split('/').pop(); // Mengambil nama file dari src
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    // Hapus gambar dari pesanan
+                    const imageIndex = selectedImages.indexOf(src);
+                    if (imageIndex > -1) {
+                        selectedImages.splice(imageIndex, 1);
+                    }
+                    updateOrderBox(); // Update kotak pesanan
+                    const imageWrappers = document.querySelectorAll('.image-wrapper');
+                    imageWrappers.forEach(wrapper => {
+                        const img = wrapper.querySelector('img');
+                        if (img.src === src) {
+                            wrapper.classList.remove('selected'); // Hapus border biru
+                        }
+                    });
+                };
+
+                orderItem.appendChild(selectedImg);
+                orderItem.appendChild(imgName);
+                orderItem.appendChild(deleteButton);
+                selectedImagesContainer.appendChild(orderItem);
+            });
+        }
+
+        // Event listener untuk tombol Pesan
+        document.getElementById('send-button').addEventListener('click', function() {
+            const phoneNumber = '085813572393'; // Ganti dengan nomor WhatsApp yang diinginkan
+            const message = selectedImages.map(src => src.split('/').pop()).join(', '); // Mengambil nama file
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Pesanan%20Anda:%20${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank'); // Membuka WhatsApp dengan pesan
+        });
+    </script>
+</body>
+</html>

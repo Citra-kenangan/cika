@@ -1,0 +1,136 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('sky-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #000; /* Mengubah warna teks menjadi hitam */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Menambahkan latar belakang semi-transparan untuk konten */
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+header {
+    background-color: #FFC107; /* Mengganti warna hijau menjadi kuning */
+    color: #000; /* Mengubah warna teks menjadi hitam */
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #000; /* Mengubah warna teks menjadi hitam */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+#home {
+    color: #000; /* Mengubah warna teks menjadi hitam */
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start; /* Mengubah dari center ke flex-start */
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 2rem; /* Mengurangi padding atas untuk mengatur posisi lebih ke atas */
+}
+
+#home h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif; /* Menggunakan font yang lebih menarik */
+}
+
+#home p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: #FFC107; /* Mengganti warna hijau menjadi kuning */
+    color: #000; /* Mengubah warna teks menjadi hitam */
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FFB300; /* Mengganti warna hijau menjadi kuning */
+}
+
+#features ul {
+    list-style: none;
+    padding: 0;
+}
+
+#features ul li {
+    background-color: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#kenangan-images {
+    display: flex;
+    flex-direction: column; /* Mengatur gambar berderet ke bawah */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#kenangan-images img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#pasangan {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.pasangan-image {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
